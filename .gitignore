@@ -1,0 +1,15 @@
+# Firmware binaries are Dell/Phoenix copyrighted: never commit them (patched builds go to Releases)
+*.ROM
+*.rom
+*.WPH
+*.zip
+*.exe
+*.EXE
+*.BIN
+*.bin
+Original/
+Modified/
+out/
+.DS_Store
+__pycache__/
+venv/
