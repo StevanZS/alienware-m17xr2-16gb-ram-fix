@@ -69,10 +69,29 @@ The script refuses to run unless the input matches the original ROM's SHA-256. C
 against [`SHA256SUMS.txt`](SHA256SUMS.txt). Patched builds may also be attached to
 [Releases](../../releases).
 
-**To flash:** replace `W851A10.ROM` in Dell's `A10` folder with the patched file, boot DOS and run
-Dell's `F.bat`. That flashes the BIOS with `phlash16 /mode=3 /bbl`, then re-flashes the unchanged EC
-firmware (`851-1534.BIN`). Flash on AC power with a charged battery, and don't interrupt the flash.
-Dell's `CRISDISK.ZIP` contains the original ROM as `BIOS.WPH` for Phoenix crisis recovery. Keep it.
+### Flashing (recommended procedure)
+
+Start from a laptop already on BIOS **A10 / EC 15.34**; Setup's Main page shows both. Boot plain DOS
+(for example a FreeDOS USB stick made with Rufus) with Dell's `phlash16.exe` and the patched
+`W851A10.ROM` on the stick, then run:
+
+```
+phlash16 /RO=BACKUP.ROM
+phlash16 W851A10.ROM /mode=3 /s /v /exit
+```
+
+- `/RO` saves the current flash chip to `BACKUP.ROM`. Copy it somewhere safe before continuing. It
+  holds your machine's own data, such as the Service Tag, and is what you'd write back with an SPI
+  programmer if everything else fails.
+- The flash command is Dell's `F.bat` command **without `/bbl`**, with `/v` added to verify each
+  block. The boot block is identical in the patched image, so leaving out `/bbl` loses nothing and
+  keeps Phoenix crisis recovery untouched even if the flash is interrupted.
+- Don't run the rest of `F.bat` (`rpg` / `dflash`). The EC firmware is unchanged, and 15.34 is
+  already installed.
+
+Flash on AC power with a charged battery, and don't interrupt the flash. Power the laptop fully off
+and on afterwards. Dell's `CRISDISK.ZIP` contains the original ROM as `BIOS.WPH` for crisis recovery.
+Keep it.
 
 ## License
 
