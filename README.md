@@ -8,9 +8,12 @@ correctly (4096 / 4096 / 8192 MB).
 This project patches Dell's latest M17x R2 BIOS (**A10**) so Setup shows `8192 MB` / `8192 MB` /
 `16384 MB` and *Dual*. Nothing else changes.
 
-> **Status:** the patch has been verified off-hardware: module checksums, exact recompression and CPU
-> emulation of the new code. It has **not yet been flashed and tested on a real M17x R2**. Flashing a
-> BIOS always carries risk. Proceed at your own risk.
+> **Status:** ✅ **tested on real hardware.** An M17x R2 (i7-620M, 2×8GB DDR3) flashed with the patched
+> A10 shows Total Memory 16384 MB, Memory Bank 0/1 8192 MB, and Memory Channel Mode *Dual*.
+> Flashing a BIOS always carries some risk. Proceed at your own risk.
+>
+> Known remaining issue: *Memory Frequency* shows `ERR` with these DIMMs. This is a separate Setup bug
+> that this patch doesn't change.
 
 ## Root cause
 
