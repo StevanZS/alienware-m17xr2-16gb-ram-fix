@@ -7,8 +7,10 @@ Channel Mode: Single**. With 2×4GB everything displays correctly (4096 / 4096 /
 This project patches Dell's latest M17x R2 BIOS (**A10**) so Setup shows `8192 MB` / `8192 MB` /
 `16384 MB` and *Dual*. Nothing else changes.
 
-> **Status:** ✅ **the Setup fix is tested on real hardware.** An M17x R2 flashed with the patched A10
-> shows Total Memory 16384 MB, Memory Bank 0/1 8192 MB and Memory Channel Mode *Dual* with 2×8GB.
+> **Status:** ✅ **16GB confirmed working on real hardware.** An M17x R2 (i7-920XM, 2×8GB Samsung
+> DDR3) flashed with the patched A10 shows Total Memory 16384 MB, Memory Bank 0/1 8192 MB, Memory
+> Channel Mode *Dual* and Memory Frequency 1333 MHz. Windows 7 x64 boots and uses all 16GB
+> (DDR3-1333, 9-9-9-24, 1T). **This needs a quad-core Clarksfield CPU; see the warning below.**
 > Flashing a BIOS always carries some risk. Proceed at your own risk.
 
 > ⚠️ **8GB modules do not work with dual-core Arrandale CPUs** (e.g. i7-620M). This is not a BIOS
@@ -21,12 +23,13 @@ This project patches Dell's latest M17x R2 BIOS (**A10**) so Setup shows `8192 M
 > the 4-Gbit refresh time (tRFC ≈ 262 ns). The most likely cause is that the Arrandale memory
 > controller can't address 4-Gbit DRAM chips; Intel lists a maximum of 8GB (2×4GB) for these CPUs.
 > **For 16GB, use a quad-core Clarksfield CPU** (i7-720QM/740QM/820QM/840QM/920XM), which the R2
-> supports. A Clarksfield M15x runs these same modules at DDR3-1333.
+> supports. This is confirmed: the same R2, with the i7-620M swapped for an i7-920XM and nothing else
+> changed, runs 2×8GB at DDR3-1333 in dual channel and Windows uses all 16GB.
 
 > *Memory Frequency: `ERR`* is cosmetic and only appears with Arrandale CPUs. There, Setup can't read
 > the Clarksfield memory-ratio register (`B0xFF:D3:F4` offset `0x50` returns `0xFF`), so it falls back
 > to the modules' SPD rating, and DDR3-1600 (tCKmin `0x0A`) isn't in Dell's 1066/1333 list. With a
-> Clarksfield CPU, Setup shows the actual frequency.
+> Clarksfield CPU, Setup shows the actual frequency (1333 MHz with the i7-920XM).
 
 ## Root cause
 
