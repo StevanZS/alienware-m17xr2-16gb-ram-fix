@@ -7,10 +7,10 @@ Channel Mode: Single**. With 2×4GB everything displays correctly (4096 / 4096 /
 This project patches Dell's latest M17x R2 BIOS (**A10**) so Setup shows `8192 MB` / `8192 MB` /
 `16384 MB` and *Dual*. Nothing else changes.
 
-> **Status:** ✅ **16GB confirmed working on real hardware.** An M17x R2 (i7-920XM, 2×8GB Samsung
-> DDR3) flashed with the patched A10 shows Total Memory 16384 MB, Memory Bank 0/1 8192 MB, Memory
+> **Status:** ✅ **16GB confirmed working on real hardware.** An M17x R2 (i7-920XM, 2×8GB DDR3-1600
+> SO-DIMMs) flashed with the patched A10 shows Total Memory 16384 MB, Memory Bank 0/1 8192 MB, Memory
 > Channel Mode *Dual* and Memory Frequency 1333 MHz. Windows 7 x64 boots and uses all 16GB
-> (DDR3-1333, 9-9-9-24, 1T). **This needs a quad-core Clarksfield CPU; see the warning below.**
+> (DDR3-1333, 10-10-10-24, 1T). **This needs a quad-core Clarksfield CPU; see the warning below.**
 > Flashing a BIOS always carries some risk. Proceed at your own risk.
 
 > ⚠️ **8GB modules do not work with dual-core Arrandale CPUs** (e.g. i7-620M). This is not a BIOS
